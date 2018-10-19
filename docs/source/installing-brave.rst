@@ -28,7 +28,8 @@ Mint 17+
 
     curl https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key add -
 
-    UBUNTU_CODENAME=$( (grep DISTRIB_CODENAME /etc/upstream-release/lsb-release || grep DISTRIB_CODENAME /etc/lsb-release) 2>/dev/null | cut -d'=' -f2 )
+
+    UBUNTU_CODENAME=$( awk -F '='  '/UBUNTU_CODENAME/{print $2}' /etc/os-release )
 
     echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ $UBUNTU_CODENAME main" | sudo tee -a /etc/apt/sources.list.d/brave-browser-release-$UBUNTU_CODENAME.list
 
@@ -72,7 +73,7 @@ Mint 17+
 
     curl https://brave-browser-apt-beta.s3.brave.com/brave-core-nightly.asc | sudo apt-key add -
 
-    UBUNTU_CODENAME=$( (grep DISTRIB_CODENAME /etc/upstream-release/lsb-release || grep DISTRIB_CODENAME /etc/lsb-release) 2>/dev/null | cut -d'=' -f2 )
+    UBUNTU_CODENAME=$( awk -F '='  '/UBUNTU_CODENAME/{print $2}' /etc/os-release )
 
     echo "deb [arch=amd64] https://brave-browser-apt-beta.s3.brave.com/ $UBUNTU_CODENAME main" | sudo tee -a /etc/apt/sources.list.d/brave-browser-beta-$UBUNTU_CODENAME.list
 
@@ -118,7 +119,7 @@ Mint 17+
 
     curl https://brave-browser-apt-dev.s3.brave.com/brave-core-nightly.asc | sudo apt-key add -
 
-    UBUNTU_CODENAME=$( (grep DISTRIB_CODENAME /etc/upstream-release/lsb-release || grep DISTRIB_CODENAME /etc/lsb-release) 2>/dev/null | cut -d'=' -f2 )
+    UBUNTU_CODENAME=$( awk -F '='  '/UBUNTU_CODENAME/{print $2}' /etc/os-release )
 
     echo "deb [arch=amd64] https://brave-browser-apt-dev.s3.brave.com/ $UBUNTU_CODENAME main" | sudo tee -a /etc/apt/sources.list.d/brave-browser-dev-$UBUNTU_CODENAME.list
 
